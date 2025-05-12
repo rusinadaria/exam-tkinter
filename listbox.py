@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 import requests
 
 API_URL = "http://localhost:8080/api/partners"
+ADD_URL = "http://localhost:8080/api/addPartner"
 
 def fetch_partners():
     try:
@@ -39,7 +40,7 @@ def open_add_partner_window():
             messagebox.showwarning("Ошибка", "Заполните все поля")
             return
         try:
-            response = requests.post(API_URL, json={"name": name, "phone": phone})
+            response = requests.post(ADD_URL, json={"name": name, "phone": phone})
             response.raise_for_status()
             messagebox.showinfo("Успех", "Партнёр добавлен")
             add_window.destroy()
